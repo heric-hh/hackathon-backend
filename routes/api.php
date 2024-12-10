@@ -40,3 +40,6 @@ Route::prefix('proveedores')->group(function() {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/proveedores/por-fecha', [ProveedoresAutorizados::class, 'proveedoresPorCategoria'])->middleware('auth:sanctum');
+Route::get('/proveedores/por-categoria', [ProveedoresAutorizados::class, 'proveedoresPorFecha'])->middleware('auth:sanctum');

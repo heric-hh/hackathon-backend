@@ -43,4 +43,22 @@ class ProveedoresAutorizados extends Controller
             'proveedor' => $proveedor,
         ]);
     }
+
+    public function proveedoresPorFecha() {
+        $proveedores = ProveedorAutorizado::selectRaw('COUNT(id) as cantidad, MONTH(created_at) as mes, YEAR(created_at) as year')
+            ->groupBy('mes', 'year')
+            ->orderBy('year', 'asc')
+            ->orderBy('mes', 'asc')
+            ->get();
+
+        return response()->json($proveedores);
+    }
+
+    public function proveedoresPorCategoria() {
+        $proveedores = ProveedorAutorizado::selectRaw('COUNT(id) as cantidad, clasificacion as categoria')
+        ->groupBy('clasificacion')
+        ->get();
+
+        return response()->json($proveedores);
+    }
 }
