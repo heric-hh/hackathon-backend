@@ -19,7 +19,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Todos los campos son requeridos', 'errors' => $validated->errors()], 422);
         }
 
-        $validated = $validated->getData();
+        $validated = $validated->validate();
 
         $user = User::create([
             'email' => $validated['email'],
@@ -42,11 +42,11 @@ class AuthController extends Controller
             ], 422);
         }
 
-        $validated = $validated->getData();
+        $validated = $validated->validate();
         $user = User::where('email', $validated['email'])->first();
         
         if(!$user || !Hash::check($validated['password'], $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json(['message' => 'Credenciales Invalidas'], 401);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
