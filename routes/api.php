@@ -31,6 +31,12 @@ Route::post('/proveedores-autorizados', [ProveedoresAutorizados::class, 'store']
 //Generar un PDF de proveedores autorizados
 Route::get('/generar-pdf-proveedores', [ProveedorPdfController::class, 'generarPdfProveedores'])->middleware('auth:sanctum');
 
+Route::prefix('proveedores')->group(function() {
+    Route::get('/pdfs', [ProveedorPdfController::class, 'listarPdf']);
+    Route::get('/pdfs/{id}/descargar', [ProveedorPdfController::class, 'descargarPdf']);
+    Route::delete('/pdfs/{id}/eliminar', [ProveedorPdfController::class, 'eliminarPdf']);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
