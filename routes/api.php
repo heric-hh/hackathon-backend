@@ -35,7 +35,7 @@ Route::prefix('proveedores')->group(function() {
     Route::get('/pdfs', [ProveedorPdfController::class, 'listarPdf']);
     Route::get('/pdfs/{id}/descargar', [ProveedorPdfController::class, 'descargarPdf']);
     Route::delete('/pdfs/{id}/eliminar', [ProveedorPdfController::class, 'eliminarPdf']);
-});
+})->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
