@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Validator;
 
 class ProveedoresAutorizados extends Controller
 {
+    public function index() {
+        $proveedores = ProveedorAutorizado::all();
+        return response()->json([
+            'proveedores' => $proveedores,
+        ]);
+    }
+
     public function store(Request $request) {
         $validated = Validator::make($request->all(), [
             'proveedor' => 'required',

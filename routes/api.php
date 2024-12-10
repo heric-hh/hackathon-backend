@@ -21,6 +21,10 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
+//Obtener todos los proveedores autorizados
+Route::get('/proveedores-autorizados', [ProveedoresAutorizados::class, 'index'])->middleware('auth:sanctum');
+
+//Crear un proveedor autorizado
 Route::post('/proveedores-autorizados', [ProveedoresAutorizados::class, 'store'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
