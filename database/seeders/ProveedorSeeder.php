@@ -1,20 +1,15 @@
 <?php
-
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\ProveedorAutorizado;
+use App\Models\Proveedor;
 use Illuminate\Database\Seeder;
+use App\Models\ProveedorAutorizado;
 
-class DatabaseSeeder extends Seeder
+class ProveedorSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // Poblar la tabla con 10 proveedores dummy
+      // Poblar la tabla con 10 proveedores dummy
         for ($i = 0; $i < 10; $i++) {
             ProveedorAutorizado::create([
                 'proveedor' => 'Proveedor ' . $i,
