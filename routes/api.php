@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Models\ProveedorAutorizado;
 use App\Http\Controllers\ProveedoresAutorizados;
+use App\Http\Controllers\ProveedorPdfController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::get('/proveedores-autorizados', [ProveedoresAutorizados::class, 'index'])
 
 //Crear un proveedor autorizado
 Route::post('/proveedores-autorizados', [ProveedoresAutorizados::class, 'store'])->middleware('auth:sanctum');
+
+//Generar un PDF de proveedores autorizados
+Route::get('/generar-pdf-proveedores', [ProveedorPdfController::class, 'generarPdfProveedores'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
